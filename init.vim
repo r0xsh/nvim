@@ -4,24 +4,27 @@ set clipboard=unnamedplus
 " PLUGINS
 " ====>
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'mbbill/undotree'
+  Plug 'junegunn/vim-plug'
+  Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'}
   Plug 'raimondi/delimitmate'
-  Plug 'scrooloose/nerdtree'
-  Plug 'pangloss/vim-javascript'
-  Plug 'jelera/vim-javascript-syntax'
-  Plug 'rhysd/vim-crystal'
-  Plug 'rust-lang/rust.vim'
-  Plug 'racer-rust/vim-racer'
+  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
+  Plug 'jelera/vim-javascript-syntax', { 'for', 'javascript' }
+  Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
+  Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
   Plug 'lrvick/Conque-Shell'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'terryma/vim-multiple-cursors'
-  Plug 'godlygeek/tabular'
+  Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
   Plug 'ervandew/supertab'
   Plug 'scrooloose/nerdcommenter'
   Plug 'vim-airline/vim-airline'
+  Plug 'airblade/vim-gitgutter'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'liuchengxu/space-vim-dark'
+  Plug 'cespare/vim-toml', { 'for': 'toml' }
+  Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 call plug#end()
 
   " Supertab config
@@ -45,6 +48,15 @@ call plug#end()
 
   " Nerdtree config
   map	    <leader>o	:NERDTreeToggle<CR>
+
+  " Racer/Rust config
+  set hidden
+  let g:racer_cmd = "~/.cargo/bin/racer"
+  let g:racer_experimental_completer = 1
+  au FileType rust nmap gd <Plug>(rust-def)
+  au FileType rust nmap gs <Plug>(rust-def-split)
+  au FileType rust nmap gx <Plug>(rust-def-vertical)
+  au FileType rust nmap <leader>gd <Plug>(rust-doc)
 " ====<
 
 
@@ -194,5 +206,3 @@ call plug#end()
   noremap <S-Tab>		:bprevious<CR>
   noremap <Tab>			:bnext<CR>
 " ====<
-
-
