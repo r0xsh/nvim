@@ -1,6 +1,48 @@
-set nocompatible
-filetype indent plugin on
-set clipboard=unnamedplus
+" GENERAL
+" ====>
+  " Smart indentation
+  set autoindent
+  set smartindent
+
+  " Tab stops
+  set tabstop=2
+  set shiftwidth=2
+  set softtabstop=2
+  set expandtab
+
+  " Unicode
+  set encoding=utf-8
+
+  " Highlight matching brace/parenthese/bracket
+  set showmatch
+
+  " Visual bell
+  set vb t_vb=
+  set novisualbell
+
+  " Watch for file changes
+  set autoread
+
+  " Line endings
+  set fileformats=unix
+  set ff=unix
+
+  " Backup files
+  set nobackup
+  set nowb
+  set noswapfile
+
+  " Set <Leader> key
+  let  mapleader = ','
+  let g:mapleader = ','
+
+  set nocompatible
+  filetype indent plugin on
+  set clipboard=unnamedplus
+" ====<
+
+
+
 " PLUGINS
 " ====>
 call plug#begin('~/.config/nvim/plugged')
@@ -9,7 +51,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
-  Plug 'jelera/vim-javascript-syntax', { 'for', 'javascript' }
+  Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
   Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'racer-rust/vim-racer', { 'for': 'rust' }
@@ -57,47 +99,6 @@ call plug#end()
   au FileType rust nmap gs <Plug>(rust-def-split)
   au FileType rust nmap gx <Plug>(rust-def-vertical)
   au FileType rust nmap <leader>gd <Plug>(rust-doc)
-" ====<
-
-
-
-" GENERAL
-" ====>
-  " Smart indentation
-  set autoindent
-  set smartindent
-
-  " Tab stops
-  set tabstop=2
-  set shiftwidth=2
-  set softtabstop=2
-  set expandtab
-
-  " Unicode
-  set encoding=utf-8
-
-  " Highlight matching brace/parenthese/bracket
-  set showmatch
-
-  " Visual bell
-  set vb t_vb=
-  set novisualbell
-
-  " Watch for file changes
-  set autoread
-
-  " Line endings
-  set fileformats=unix
-  set ff=unix
-
-  " Backup files
-  set nobackup
-  set nowb
-  set noswapfile
-
-  " Set <Leader> key
-  let  mapleader = ','
-  let g:mapleader = ','
 " ====<
 
 
