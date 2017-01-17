@@ -47,7 +47,7 @@
 " ====>
 call plug#begin('~/.config/nvim/plugged')
   Plug 'junegunn/vim-plug'
-  Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'}
+  Plug 'mbbill/undotree'
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
@@ -74,22 +74,20 @@ call plug#end()
   set wildmode=list:longest,full
 
   " Tabular config
-  if exists(":Tabularize")
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>a: :Tabularize /:\zs<CR>
-    vmap <Leader>a: :Tabularize /:\zs<CR>
-  endif
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
 
   " Undootree config
-  map	    <leader>y	:UndotreeToggle<CR>
+  map	<leader>y	:UndotreeToggle<CR>
   if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
   endif
 
   " Nerdtree config
-  map	    <leader>o	:NERDTreeToggle<CR>
+  map <leader>o	:NERDTreeToggle<CR>
 
   " Racer/Rust config
   set hidden
