@@ -23,10 +23,6 @@
   " Watch for file changes
   set autoread
 
-  " Line endings
-  set fileformats=unix
-  set ff=unix
-
   " Backup files
   set nobackup
   set nowb
@@ -46,7 +42,6 @@
 " PLUGINS
 " ====>
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'junegunn/vim-plug'
   Plug 'mbbill/undotree'
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -54,8 +49,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
   Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-  Plug 'racer-rust/vim-racer', { 'for': 'rust' }
-  Plug 'lrvick/Conque-Shell'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'terryma/vim-multiple-cursors'
@@ -67,6 +60,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'cespare/vim-toml', { 'for': 'toml' }
   Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+  Plug 'jszakmeister/vim-togglecursor'
+  Plug 'vim-syntastic/syntastic'
 call plug#end()
 
   " Supertab config
@@ -89,14 +84,15 @@ call plug#end()
   " Nerdtree config
   map <leader>o	:NERDTreeToggle<CR>
 
-  " Racer/Rust config
-  set hidden
-  let g:racer_cmd = "~/.cargo/bin/racer"
-  let g:racer_experimental_completer = 1
-  au FileType rust nmap gd <Plug>(rust-def)
-  au FileType rust nmap gs <Plug>(rust-def-split)
-  au FileType rust nmap gx <Plug>(rust-def-vertical)
-  au FileType rust nmap <leader>gd <Plug>(rust-doc)
+  " Syntastic config
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_rust_checkers = ['rustc']
+
+  " Tooglecursor config
+  let g:togglecursor_default = 'blinking_line'
 " ====<
 
 
@@ -163,9 +159,11 @@ call plug#end()
   set laststatus=2
 
   let g:airline#extensions#tabline#enabled = 1
-  let g:airline_powerline_fonts = 0
   let g:airline_theme = 'tomorrow'
   " Nice themes: hybrid, ubaryd, zenburn, tomorrow
+
+  " Disable whitespace extension
+  let g:airline#extensions#whitespace#enabled = 0
 " ====<
 
 
