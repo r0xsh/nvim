@@ -53,20 +53,17 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
-  Plug 'ervandew/supertab'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'vim-airline/vim-airline'
   Plug 'airblade/vim-gitgutter'
-  Plug 'vim-airline/vim-airline-themes'
+  Plug 'itchyny/lightline.vim'
   Plug 'cespare/vim-toml', { 'for': 'toml' }
   Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
   Plug 'jszakmeister/vim-togglecursor'
   Plug 'vim-syntastic/syntastic'
+  Plug 'Shougo/denite.nvim'
+  Plug 'valloric/YouCompleteMe'
+  Plug 'majutsushi/tagbar'
 call plug#end()
-
-  " Supertab config
-  set wildmenu
-  set wildmode=list:longest,full
 
   " Tabular config
   nmap <Leader>a= :Tabularize /=<CR>
@@ -82,7 +79,7 @@ call plug#end()
   endif
 
   " Nerdtree config
-  map <leader>o	:NERDTreeToggle<CR>
+  map <leader>o :NERDTreeToggle<CR>
 
   " Syntastic config
   let g:syntastic_always_populate_loc_list = 1
@@ -93,6 +90,26 @@ call plug#end()
 
   " Tooglecursor config
   let g:togglecursor_default = 'blinking_line'
+
+  " YouCompletMe config
+  let g:ycm_rust_src_path = '~/.rust/src'
+
+  " Tagbar config
+  map <Leader>p :TagbarToggle<CR>
+  let g:tagbar_type_rust = {
+         \ 'ctagstype' : 'rust',
+         \ 'kinds' : [
+         \'T:types,type definitions',
+         \'f:functions,function definitions',
+         \'g:enum,enumeration names',
+         \'s:structure names',
+         \'m:modules,module names',
+         \'c:consts,static constants',
+         \'t:traits,traits',
+         \'i:impls,trait implementations',
+         \]
+    \}
+
 " ====<
 
 
@@ -101,7 +118,7 @@ call plug#end()
 " ====>
   " Turn off spell checking (colors made text unreadable)
   set nospell
-  set spelllang=en
+  set spelllang=en,fr
 
   " Show only 9 suggestions for misspelled words
   set spellsuggest=9
@@ -152,18 +169,13 @@ call plug#end()
 
 " STATUSBAR
 " ====>
-  " Turn on statusbar
-  set ruler
-
-  " Always show the statusline
   set laststatus=2
 
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline_theme = 'tomorrow'
-  " Nice themes: hybrid, ubaryd, zenburn, tomorrow
-
-  " Disable whitespace extension
-  let g:airline#extensions#whitespace#enabled = 0
+  let g:lightline = {
+        \ 'colorscheme': 'seoul256',
+        \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
+        \ 'subseparator': { 'left': '▒', 'right': '░' }
+  \ }
 " ====<
 
 
