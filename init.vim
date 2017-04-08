@@ -86,13 +86,13 @@ call plug#end()
   let g:syntastic_auto_loc_list = 1
   let g:syntastic_check_on_open = 1
   let g:syntastic_check_on_wq = 0
-  let g:syntastic_rust_checkers = ['rustc']
+  let g:syntastic_rust_checkers = ['cargo']
 
   " Tooglecursor config
   let g:togglecursor_default = 'blinking_line'
 
   " YouCompletMe config
-  let g:ycm_rust_src_path = '~/.rust/src'
+  let g:ycm_rust_src_path = $RUST_SRC_PATH
 
   " Tagbar config
   map <Leader>p :TagbarToggle<CR>
