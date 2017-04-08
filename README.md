@@ -16,7 +16,7 @@ ln -s $HOME/.config/nvim/init.vim $HOME/.vimrc
 vim -c "PlugInstall"
 ```
 
-#### Setup YouCompleteMe
+### Setup YouCompleteMe
 
 https://github.com/Valloric/YouCompleteMe/blob/master/README.md
 
