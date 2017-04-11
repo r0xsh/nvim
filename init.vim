@@ -152,7 +152,7 @@ call plug#end()
 " DECORATION
 " ====>
   " Turn on line numbering
-  set number
+  set relativenumber
   set numberwidth=1
 
   " Highlight curret line
