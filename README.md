@@ -24,6 +24,7 @@ https://github.com/Valloric/YouCompleteMe/blob/master/README.md
 
 ```bash
 source $HOME/.cargo/env
+rustup component add rust-src
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 ```
 
