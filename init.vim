@@ -49,27 +49,17 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
   Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'roxma/nvim-completion-manager'
+  Plug 'roxma/nvim-cm-racer'
   Plug 'bronson/vim-trailing-whitespace'
-  Plug 'AndrewRadev/splitjoin.vim'
-  Plug 'terryma/vim-multiple-cursors'
-  Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
   Plug 'scrooloose/nerdcommenter'
   Plug 'airblade/vim-gitgutter'
   Plug 'itchyny/lightline.vim'
   Plug 'cespare/vim-toml', { 'for': 'toml' }
   Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
-  Plug 'jszakmeister/vim-togglecursor'
   Plug 'vim-syntastic/syntastic'
-  Plug 'Shougo/denite.nvim'
-  Plug 'valloric/YouCompleteMe'
   Plug 'majutsushi/tagbar'
 call plug#end()
-
-  " Tabular config
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
 
   " Undootree config
   map	<leader>y	:UndotreeToggle<CR>
@@ -87,12 +77,6 @@ call plug#end()
   let g:syntastic_check_on_open = 1
   let g:syntastic_check_on_wq = 0
   let g:syntastic_rust_checkers = ['cargo']
-
-  " Tooglecursor config
-  let g:togglecursor_default = 'blinking_line'
-
-  " YouCompletMe config
-  let g:ycm_rust_src_path = $RUST_SRC_PATH
 
   " Tagbar config
   map <Leader>p :TagbarToggle<CR>
