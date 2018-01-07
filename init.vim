@@ -45,9 +45,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mbbill/undotree'
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'pangloss/vim-javascript', { 'for': 'javascript'}
-  Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-  Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
   Plug 'roxma/nvim-completion-manager'
   Plug 'roxma/nvim-cm-racer'
@@ -56,7 +53,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'itchyny/lightline.vim'
   Plug 'cespare/vim-toml', { 'for': 'toml' }
-  Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
   Plug 'vim-syntastic/syntastic'
   Plug 'majutsushi/tagbar'
 call plug#end()
@@ -70,6 +66,12 @@ call plug#end()
 
   " Nerdtree config
   map <leader>o :NERDTreeToggle<CR>
+  augroup Nerdtree
+    au!
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+  augroup END
+  let g:NERDTreeShowBookmarks = 1
+
 
   " Syntastic config
   let g:syntastic_always_populate_loc_list = 1
