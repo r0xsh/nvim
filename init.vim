@@ -46,6 +46,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+  Plug 'fatih/vim-go'
   Plug 'roxma/nvim-completion-manager'
   Plug 'roxma/nvim-cm-racer'
   Plug 'bronson/vim-trailing-whitespace'
@@ -79,6 +81,7 @@ call plug#end()
   let g:syntastic_check_on_open = 1
   let g:syntastic_check_on_wq = 0
   let g:syntastic_rust_checkers = ['cargo']
+  let g:syntastic_go_checkers = ['go']
 
   " Tagbar config
   map <Leader>p :TagbarToggle<CR>
