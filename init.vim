@@ -46,10 +46,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-  Plug 'nsf/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
-  Plug 'fatih/vim-go'
-  Plug 'roxma/nvim-completion-manager'
-  Plug 'roxma/nvim-cm-racer'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'sebastianmarkow/deoplete-rust'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'scrooloose/nerdcommenter'
   Plug 'airblade/vim-gitgutter'
@@ -57,6 +55,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'cespare/vim-toml', { 'for': 'toml' }
   Plug 'vim-syntastic/syntastic'
   Plug 'majutsushi/tagbar'
+  Plug 'baverman/vial'
+  Plug 'baverman/vial-http'
+  Plug 'thiagoalessio/rainbow_levels.vim'
 call plug#end()
 
   " Undootree config
@@ -98,6 +99,11 @@ call plug#end()
          \'i:impls,trait implementations',
          \]
     \}
+
+  " Deopleted
+  let g:deoplete#enable_at_startup = 1
+  let g:deoplete#sources#rust#racer_binary=$CARGO_BIN_PATH
+	let g:deoplete#sources#rust#rust_source_path=$RUST_SRC_PATH
 
 " ====<
 
@@ -141,7 +147,7 @@ call plug#end()
 " DECORATION
 " ====>
   " Turn on line numbering
-  set relativenumber
+  set number relativenumber
   set numberwidth=1
 
   " Highlight curret line
