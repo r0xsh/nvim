@@ -53,7 +53,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'itchyny/lightline.vim'
   Plug 'cespare/vim-toml', { 'for': 'toml' }
-  Plug 'vim-syntastic/syntastic'
+  Plug 'w0rp/ale'
   Plug 'majutsushi/tagbar'
   Plug 'baverman/vial'
   Plug 'baverman/vial-http'
@@ -74,15 +74,13 @@ call plug#end()
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   augroup END
   let g:NERDTreeShowBookmarks = 1
-
-
-  " Syntastic config
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_rust_checkers = ['cargo']
-  let g:syntastic_go_checkers = ['go']
+  " Ale config
+  let g:ale_sign_error = '>'
+  let g:ale_sign_warning = '-'
+  let g:ale_set_highlights = 0
+  let g:ale_fixers = {
+  \   'rust': ['cargo'],
+  \}
 
   " Tagbar config
   map <Leader>p :TagbarToggle<CR>
@@ -169,7 +167,14 @@ call plug#end()
   let g:lightline = {
         \ 'colorscheme': 'seoul256',
         \ 'separator': { 'left': '▓▒░', 'right': '░▒▓' },
-        \ 'subseparator': { 'left': '▒', 'right': '░' }
+        \ 'subseparator': { 'left': '▒', 'right': '░' },
+        \  'active': {
+        \   'right': [ [ 'lineinfo' ],
+        \              [ 'fileformat', 'fileencoding', 'filetype', 'alecheck' ] ]
+        \ },
+        \ 'component_function' : {
+        \   'alecheck': 'LinterStatus'
+        \}
   \ }
 " ====<
 
@@ -210,3 +215,17 @@ call plug#end()
   noremap <S-Tab>		:bprevious<CR>
   noremap <Tab>			:bnext<CR>
 " ====<
+
+ " LinterStatus for lightline
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
