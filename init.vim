@@ -46,14 +46,17 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'raimondi/delimitmate'
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+  Plug 'kien/ctrlp.vim'
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'sebastianmarkow/deoplete-rust'
+  Plug 'carlitux/deoplete-ternjs'
   Plug 'bronson/vim-trailing-whitespace'
   Plug 'scrooloose/nerdcommenter'
   Plug 'airblade/vim-gitgutter'
   Plug 'itchyny/lightline.vim'
   Plug 'cespare/vim-toml', { 'for': 'toml' }
   Plug 'w0rp/ale'
+  Plug 'posva/vim-vue'
   Plug 'majutsushi/tagbar'
   Plug 'baverman/vial'
   Plug 'baverman/vial-http'
@@ -74,13 +77,21 @@ call plug#end()
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
   augroup END
   let g:NERDTreeShowBookmarks = 1
+
   " Ale config
   let g:ale_sign_error = '>'
   let g:ale_sign_warning = '-'
   let g:ale_set_highlights = 0
   let g:ale_fixers = {
   \   'rust': ['cargo'],
+  \   'vue':  ['prettier'],
+  \   'javascript': ['eslint', 'prettier']
   \}
+
+
+  " Ctrl P
+  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+  let g:ctrlp_user_command = 'fd --full-path %s --type f'
 
   " Tagbar config
   map <Leader>p :TagbarToggle<CR>
@@ -102,6 +113,13 @@ call plug#end()
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#sources#rust#racer_binary=$CARGO_BIN_PATH
 	let g:deoplete#sources#rust#rust_source_path=$RUST_SRC_PATH
+  let g:deoplete#sources#ternjs#tern_bin=$TERNJS_BIN_PATH
+
+  let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ ]
 
 " ====<
 
